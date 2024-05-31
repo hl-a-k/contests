@@ -1,4 +1,3 @@
-// C++ program to demonstrate the use of priority_queue
 #include <iostream>
 #include <queue>
 using namespace std;

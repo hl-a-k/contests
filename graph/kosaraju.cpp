@@ -1,24 +1,18 @@
-// C++ program to print the SCC of the
-// graph using Kosaraju's Algorithm
 #include <iostream>
 #include <list>
 #include <stack>
 using namespace std;
 
 class Graph {
-	// No. of vertices
 	int V;
-
-	// An array of adjacency lists
 	list<int>* adj;
-
-	// Member Functions
 	void fillOrder(int v, bool visited[],
 				stack<int>& Stack);
 	void DFSUtil(int v, bool visited[]);
 
 public:
 	Graph(int V);
+	~Graph();
 	void addEdge(int v, int w);
 	void printSCCs();
 	Graph getTranspose();
@@ -29,6 +23,10 @@ Graph::Graph(int V)
 {
 	this->V = V;
 	adj = new list<int>[V];
+}
+Graph::~Graph()
+{
+	delete[] this->adj;
 }
 
 // Recursive function to print DFS
@@ -62,8 +60,7 @@ Graph Graph::getTranspose()
 	for (int v = 0; v < V; v++) {
 		// Recur for all the vertices
 		// adjacent to this vertex
-		list<int>::iterator i;
-		for (i = adj[v].begin();
+		for (auto i = adj[v].begin();
 			i != adj[v].end(); ++i) {
 			// Add to adjacency list
 			g.adj[*i].push_back(v);
@@ -149,6 +146,8 @@ void Graph::printSCCs()
 			cout << endl;
 		}
 	}
+
+	delete[] visited;
 }
 
 // Driver Code

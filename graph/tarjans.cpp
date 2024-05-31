@@ -16,6 +16,7 @@ class Graph {
 
 public:
 	Graph(int V); // Constructor
+	~Graph();
 	void addEdge(int v,
 				int w); // function to add an edge to graph
 	void SCC(); // prints strongly connected components
@@ -25,6 +26,10 @@ Graph::Graph(int V)
 {
 	this->V = V;
 	adj = new list<int>[V];
+}
+Graph::~Graph()
+{
+	delete[] adj;
 }
 
 void Graph::addEdge(int v, int w) { adj[v].push_back(w); }
@@ -114,6 +119,11 @@ void Graph::SCC()
 	for (int i = 0; i < V; i++)
 		if (disc[i] == NIL)
 			SCCUtil(i, disc, low, st, stackMember);
+
+	delete[] disc;
+	delete[] low;
+	delete[] stackMember;
+	delete st;
 }
 
 // Driver program to test above function

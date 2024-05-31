@@ -1,5 +1,5 @@
 CC = g++
-SRC = $(wildcard *.cpp)
+SRC := $(shell find $(./) -name '*.cpp' -or -name '*.c' -or -name '*.s')
 BIN = $(SRC:%.cpp=%)
  
 all : ${BIN}
