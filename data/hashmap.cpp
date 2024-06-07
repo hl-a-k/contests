@@ -15,4 +15,15 @@ int main()
     // Traversing an unordered map
     for (auto x : umap)
         cout << x.first << " " << x.second << endl;
+
+    cout << umap["test"] << endl;
+
+    auto k = umap.find("test");
+    cout << (k == umap.end()) << endl;
+    if (k != umap.end()) {
+        cout << k->first << " " << k->second << endl;
+    }
+
+    k = umap.find("test1");
+    cout << (k == umap.end()) << endl;
 }
